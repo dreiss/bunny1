@@ -517,6 +517,14 @@ class Bunny1Commands(object):
         bunny1_url = load("bunny1testurl")
         raise HTTPRedirect(bunny1_url + q(arg))
 
+    def _promote(self, arg):
+        """prints out the given url, but with "promote" stripped"""
+        target = self._my_url() + '?' + qp(arg)
+        raise Content(
+            target + "<br>" +
+            '<a href="' + cgi.escape(target) + '">' + target + "</a>"
+            )
+
     def url(self, arg):
         """goes to the URL that is specified"""
         if arg:
